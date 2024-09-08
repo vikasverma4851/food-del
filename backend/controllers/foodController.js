@@ -2,7 +2,7 @@ import foodModel from "../models/foodModel";
 import fs from "fs";
 
 //add food item
-<<<<<<< HEAD
+
 
 const addFood = async (req, res) => {
   let image_filename = `${req.file.filename}`;
@@ -49,5 +49,5 @@ const removeFood = async (req, res) => {
 };
 
 export { addFood, listFood, removeFood };
-=======
->>>>>>> parent of 3ec2dda (Admin panel and backend routes)
+
+
