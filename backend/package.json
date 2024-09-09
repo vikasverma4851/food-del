@@ -6,10 +6,7 @@
   "type":"module",
   "scripts": {
     "start":"server.js",
-    "server":"nodemon server.js",
-    "build":"vercel build"
-    
-    
+    "server":"nodemon server.js"
   },
   "author": "",
   "license": "ISC",
@@ -25,9 +22,5 @@
     "nodemon": "^3.1.4",
     "stripe": "^16.9.0",
     "validator": "^13.12.0"
-  },
-  
-  "engines": {
-    "node": "20.x"
   }
 }
