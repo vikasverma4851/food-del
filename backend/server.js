@@ -17,6 +17,9 @@ app.use(cors());
 connectDB();
 
 //api endpoints
+app.use("/", (req, res) => {
+  res.send("api Running Successfully");
+});
 app.use("/api/food", foodRouter);
 app.use("/images", express.static("uploads")); //for excess using url
 app.use("/api/user", userRouter);
