@@ -7,7 +7,7 @@
   "scripts": {
     "start":"server.js",
     "server":"nodemon server.js",
-    "build":"vite build"
+    "build":"vercel build"
     
     
   },
