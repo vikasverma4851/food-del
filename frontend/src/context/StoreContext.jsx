@@ -23,15 +23,13 @@ const StoreContextProvider = (props) => {
   };
 
   const removeFromCart = async (itemId) => {
-    if (cartItems[itemId] > 1) {
-      setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
-      if (token) {
-        await axios.post(
-          url + "/api/cart/remove",
-          { itemId },
-          { headers: { token } }
-        );
-      }
+    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+    if (token) {
+      await axios.post(
+        url + "/api/cart/remove",
+        { itemId },
+        { headers: { token } }
+      );
     }
   };
 
@@ -39,7 +37,8 @@ const StoreContextProvider = (props) => {
     let totalAmount = 0;
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
-        let itemInfo = food_list.find((product) => product._id == item);
+        let itemInfo = food_list.find((product) => product._id === item);
+
         totalAmount += itemInfo.price * cartItems[item];
       }
     }
@@ -51,27 +50,35 @@ const StoreContextProvider = (props) => {
   };
 
   const loadCartData = async (token) => {
-    const response = await axios.post(
-      url + "/api/cart/get",
-      {},
-      { headers: { token } }
-    );
-    setCartItems(response.data.cartData);
+    try {
+      const response = await axios.post(
+        url + "/api/cart/get",
+        {},
+        { headers: { token } }
+      );
+      console.log(response.data.cartData);
+      setCartItems(response.data.cartData);
+    } catch (error) {
+      console.error("Error fetching cart data", error);
+    }
   };
   useEffect(() => {
     async function loadData() {
-      try {
-        await fetchFoodList();
-        if (localStorage.getItem("token")) {
-          setToken(localStorage.getItem("token"));
-          await loadCartData(localStorage.getItem("token"));
-        }
-      } catch (error) {
-        console.error("Error loading data :", error);
+      await fetchFoodList();
+      const storedToken = localStorage.getItem("token");
+      if (storedToken) {
+        setToken(storedToken);
+        await loadCartData(storedToken);
       }
     }
     loadData();
   }, []);
+  // Automatically reload cart when token changes
+  useEffect(() => {
+    if (token) {
+      loadCartData(token);
+    }
+  }, [token]);
   const contextValue = {
     food_list,
     cartItems,
