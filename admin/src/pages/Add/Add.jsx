@@ -4,8 +4,7 @@ import "./Add.css";
 import axios from "axios";
 import { toast } from "react-toastify"; // Add this if you're using react-toastify
 
-const Add = ({url}) => {
-  
+const Add = ({ url }) => {
   const [image, setImage] = useState(false);
   const [data, setData] = useState({
     name: "",
@@ -81,7 +80,7 @@ const Add = ({url}) => {
             value={data.description}
             name="description"
             rows="6"
-            placeholder="write conten here"
+            placeholder="write content here"
           />
         </div>
         <div className="add-category-price">
@@ -94,7 +93,7 @@ const Add = ({url}) => {
               id=""
             >
               <option value="Salad">Salad</option>
-              <option value="Rolls">RollCakes</option>
+              <option value="Rolls">Rolls</option>
               <option value="Deserts">Deserts</option>
               <option value="Sandwich">Sandwich</option>
               <option value="Cake">Cake</option>
