@@ -114,7 +114,7 @@ navbar-profile {
 }
 @media (max-width: 900px) {
   .navbar .logo {
-    width: 120px;
+    width: 70px;
   }
   .navbar-menu {
     gap: 15px;
