@@ -76,6 +76,7 @@ navbar-profile {
   gap: 10px;
   background-color: #fff2ef;
   padding: 12px 25px;
+  margin: 0px 10px 0px 0px;
   border-radius: 4px;
   border: 1px solid tomato;
   outline: 2px solid white;
